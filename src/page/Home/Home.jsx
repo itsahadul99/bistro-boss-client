@@ -1,8 +1,11 @@
+import Banner from "./Banner/Banner";
+import Order from "./Order/Order";
+
 const Home = () => {
     return (
         <div>
-            <h1 className="font-inter text-5xl">This is home</h1>            
-            <h1 className="font-cinzel text-5xl">This is home</h1>            
+            <Banner />
+            <Order />           
         </div>
     );
 };
