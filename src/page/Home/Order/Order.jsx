@@ -37,34 +37,43 @@ const Order = () => {
                     className="mySwiper"
                 >
                     <SwiperSlide>
-                        <img src={slide1}  />
+                        <img src={slide1} />
                         <h1 className="text-xl md:text-2xl font-bold font-cinzel -mt-12 text-center">Salad</h1>
                     </SwiperSlide>
                     <SwiperSlide>
-                        <img src={slide2}  />
+                        <img src={slide2} />
+                        <h1 className="text-xl md:text-2xl font-bold font-cinzel -mt-12 text-center">Pizza</h1>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                        <img src={slide3} />
+                        <h1 className="text-xl md:text-2xl font-bold font-cinzel -mt-12 text-center">Soups</h1>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                        <img src={slide4} />
+                        <h1 className="text-xl md:text-2xl font-bold font-cinzel -mt-12 text-center">desserts</h1>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                        <img src={slide5} />
                         <h1 className="text-xl md:text-2xl font-bold font-cinzel -mt-12 text-center">Salad</h1>
                     </SwiperSlide>
                     <SwiperSlide>
-                        <img src={slide3}  />
+                        <img src={slide2} />
                         <h1 className="text-xl md:text-2xl font-bold font-cinzel -mt-12 text-center">Salad</h1>
                     </SwiperSlide>
                     <SwiperSlide>
-                        <img src={slide4}  />
-                        <h1 className="text-xl md:text-2xl font-bold font-cinzel -mt-12 text-center">Salad</h1>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <img src={slide5}  />
-                        <h1 className="text-xl md:text-2xl font-bold font-cinzel -mt-12 text-center">Salad</h1>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <img src={slide5}  />
-                        <h1 className="text-xl md:text-2xl font-bold font-cinzel -mt-12 text-center">Salad</h1>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <img src={slide5}  />
+                        <img src={slide3} />
                         <h1 className="text-xl md:text-2xl font-bold font-cinzel -mt-12 text-center">Salad</h1>
                     </SwiperSlide>
                 </Swiper>
+            </div>
+            <div className="hero my-5 md:my-10 lg:my-16" style={{ backgroundImage: 'url(https://i.ibb.co/Wg6jxWx/chef-service.jpg)' }}>
+                <div className="hero-overlay bg-opacity-60"></div>
+                <div className="hero-content text-center font-inter bg-white m-10">
+                    <div className="max-w-xl">
+                        <h1 className="mb-5 text-xl md:text-2xl">Bistro Boss</h1>
+                        <p className="mb-5 text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati perferendis consequuntur sint aut nesciunt voluptatibus modi, doloribus placeat enim ex. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum, minus!</p>
+                    </div>
+                </div>
             </div>
         </div>
     );
