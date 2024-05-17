@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-const MenuCard = ({ item }) => {
+const MenuList = ({ item }) => {
     const { image, name, price, recipe } = item;
     return (
         <div className="flex gap-3">
@@ -16,4 +16,4 @@ const MenuCard = ({ item }) => {
     );
 };
 
-export default MenuCard;
+export default MenuList;

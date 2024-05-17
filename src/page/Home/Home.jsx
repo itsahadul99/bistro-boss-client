@@ -2,8 +2,8 @@ import CallUs from "../../components/CallUs";
 import Banner from "./Banner/Banner";
 import ChefRecommends from "./ChefRecommends/ChefRecommends";
 import Featured from "./Featured/Featured";
-import OurMenu from "./Menu/OurMenu";
 import Order from "./Order/Order";
+import PopularMenu from "./Popular Menu/PopularMenu";
 import Testimonial from "./Testimonial/Testimonial";
 
 const Home = () => {
@@ -11,7 +11,7 @@ const Home = () => {
         <div>
             <Banner />
             <Order /> 
-            <OurMenu /> 
+            <PopularMenu /> 
             <CallUs /> 
             <ChefRecommends />
             <Featured /> 

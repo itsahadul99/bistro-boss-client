@@ -1,25 +1,16 @@
-import { useState } from "react";
 import SectionTitle from "../../../components/SectionTitle";
-import { useEffect } from "react";
-import MenuCard from "./MenuCard";
+import PopularMenuCard from "./PopularMenuCard";
+import useFetchData from "../../../hooks/FetchData/useFetchData";
 
-const OurMenu = () => {
-    const [menu, setMenu] = useState([]);
-    useEffect(() => {
-        fetch('menu.json')
-            .then(res => res.json())
-            .then(data => {
-                const popular = data.filter(i => i.category === 'popular');
-                setMenu(popular)
-            })
-    }, [])
-    console.log(menu);
+const PopularMenu = () => {
+    const [menu] = useFetchData()
+    const popular = menu.filter(i => i.category === 'popular')
     return (
         <div className="max-w-7xl mx-auto my-5 md:my-10">
             <SectionTitle heading='our menu' subHeading='check it out' />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 items-center justify-center my-5 lg:my-10">
                 {
-                    menu.map(item => <MenuCard item={item} key={item._id} />)
+                    popular.map(item => <PopularMenuCard item={item} key={item._id} />)
                 }
             </div>
             <div className="text-center">
@@ -29,4 +20,4 @@ const OurMenu = () => {
     );
 };
 
-export default OurMenu;
+export default PopularMenu;
