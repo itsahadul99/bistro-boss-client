@@ -1,6 +1,7 @@
 import SectionTitle from "../../../components/SectionTitle";
 import PopularMenuCard from "./PopularMenuCard";
 import useFetchData from "../../../hooks/FetchData/useFetchData";
+import { Link } from "react-router-dom";
 
 const PopularMenu = () => {
     const [menu] = useFetchData()
@@ -14,7 +15,9 @@ const PopularMenu = () => {
                 }
             </div>
             <div className="text-center">
-                <button className="border-b-4 border-b-[#1F2937] text-[#1F2937] hover:bg-gray-200 hover:rounded-md rounded-b-md px-2 py-1 font-semibold">View full menu</button>
+                <Link to="our-menu">
+                    <button className="border-b-4 border-b-[#1F2937] text-[#1F2937] hover:bg-gray-200 hover:rounded-md rounded-b-md px-2 py-1 font-semibold">View full menu</button>
+                </Link>
             </div>
         </div>
     );

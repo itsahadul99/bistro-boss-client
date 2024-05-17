@@ -3,7 +3,7 @@ import { FaFacebook, FaInstagram, FaTiktok, FaTwitter } from "react-icons/fa";
 const Footer = () => {
     return (
         <footer>
-            <div className="flex flex-col md:flex-row w-full h-[200px] md:h-[300px] lg:h-[350px]  text-white">
+            <div className="flex flex-col md:flex-row w-full h-[200px] md:h-[300px] lg:h-[350px] text-white">
                 <div className="flex-1 bg-[#1F2937]">
                     <div className="flex flex-col justify-center items-center h-full space-y-2">
                         <h1 className="text-xl md:text-2xl lg:text-3xl font-semibold font-cinzel">Contact us</h1>
@@ -26,7 +26,7 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
-            <div className="footer footer-center p-4 bg-[#151515] text-white">
+            <div className="footer footer-center p-4 bg-[#151515] text-white py-10">
                 <aside>
                     <p>Copyright © 2024 - All right reserved by ACME Industries Ltd</p>
                 </aside>

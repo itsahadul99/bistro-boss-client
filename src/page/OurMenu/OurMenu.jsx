@@ -20,7 +20,7 @@ const OurMenu = () => {
             <div className="hero min-h-[calc(100vh-200px)]" style={{ backgroundImage: `url("${banner}")` }}>
                 <div className="hero-overlay bg-opacity-60"></div>
                 <div className="hero-content text-center font-inter m-10">
-                    <div className=" w-[450px] lg:p-16 bg-[#15151599]">
+                    <div className=" lg:w-[450px] lg:p-16 bg-[#15151599]">
                         <h1 className="mb-5 text-xl md:text-2xl lg:text-5xl font-bold text-white font-cinzel uppercase">Our Menu</h1>
                         <h4 className="text-sm text-white font-semibold font-cinzel uppercase">Would you like to try a dish</h4>
                     </div>

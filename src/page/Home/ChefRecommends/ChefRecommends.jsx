@@ -9,7 +9,7 @@ const ChefRecommends = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8 lg:gap-10 items-center px-5 mt-5 md:mt-8 lg:mt-16">
                 <div className="card md:w-96 border shadow-sm">
                     <figure>
-                        <img className="w-full h-[200px] md:h-[250px] bg-cover" src={slide1} alt="salad carry" />
+                        <img className="w-full h-[200px] md:h-[350px] bg-cover" src={slide1} alt="salad carry" />
                     </figure>
                     <div className="card-body text-center">
                         <h2 className="text-[#151515] text-lg md:text-2xl font-semibold">Caeser Salad</h2>
@@ -21,7 +21,7 @@ const ChefRecommends = () => {
                 </div>
                 <div className="card md:w-96 border shadow-sm">
                     <figure>
-                        <img className="w-full h-[200px] md:h-[250px] bg-cover" src={slide2} alt="salad carry" />
+                        <img className="w-full h-[200px] md:h-[350px] bg-cover" src={slide2} alt="salad carry" />
                     </figure>
                     <div className="card-body text-center">
                         <h2 className="text-[#151515] text-lg md:text-2xl font-semibold">Caeser Salad</h2>
@@ -33,7 +33,7 @@ const ChefRecommends = () => {
                 </div>
                 <div className="card md:w-96 border shadow-sm">
                     <figure>
-                        <img className="w-full h-[200px] md:h-[250px] bg-cover" src={slide3} alt="salad carry" />
+                        <img className="w-full h-[200px] md:h-[350px] bg-cover" src={slide3} alt="salad carry" />
                     </figure>
                     <div className="card-body text-center">
                         <h2 className="text-[#151515] text-lg md:text-2xl font-semibold">Caeser Salad</h2>
