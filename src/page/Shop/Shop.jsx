@@ -4,8 +4,12 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import useFetchData from '../../hooks/FetchData/useFetchData';
 import FoodCard from './Food/FoodCard';
+import { useParams } from 'react-router-dom';
 const Shop = () => {
-    const [tabIndex, setTabIndex] = useState(1)
+    const categories = ['salad', 'pizza', 'soup', 'dessert', 'drinks']
+    const {category} = useParams()
+    const initializedIndex = categories.indexOf(category);
+    const [tabIndex, setTabIndex] = useState(initializedIndex)
     const [menu] = useFetchData();
     const salad = menu.filter(i => i.category === 'salad')
     const soup = menu.filter(i => i.category === 'soup')

@@ -1,5 +1,4 @@
 import banner from '../../assets/menu/banner3.jpg';
-import Cover from '../../components/Cover/Cover';
 import SectionTitle from '../../components/SectionTitle';
 import useFetchData from '../../hooks/FetchData/useFetchData';
 import MenuList from './MenuList';
@@ -7,7 +6,8 @@ import desertBg from '../../assets/menu/dessert-bg.jpeg';
 import saladBg from '../../assets/menu/salad-bg.jpg';
 import pizzaBg from '../../assets/menu/pizza-bg.jpg';
 import soupBg from '../../assets/menu/soup-bg.jpg';
-import OrderButton from '../../components/Button/OrderButton';
+import { Link } from 'react-router-dom';
+import MenuCategory from './MenuCategory/MenuCategory';
 const OurMenu = () => {
     const [menu] = useFetchData();
     const salad = menu.filter(i => i.category === 'salad')
@@ -34,44 +34,17 @@ const OurMenu = () => {
                         offered.map(item => <MenuList key={item._id} item={item} />)
                     }
                 </div>
-                <OrderButton />
-            </div>
-            <div className='max-w-7xl mx-auto my-5 md:my-10'>
-                <Cover title={"Desert"} img={desertBg} />
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5 items-center justify-center mt-5 lg:mt-10">
-                    {
-                        dessert.map(item => <MenuList key={item._id} item={item} />)
-                    }
+                <div className="text-center">
+                    <Link>
+                        <button className="rounded-md px-3 py-2 font-semibold border-b-2 hover:bg-slate-200 border-b-black mt-5 shadow-sm">ORDER YOUR FAVOURITE FOOD</button>
+                    </Link>
                 </div>
-                <OrderButton />
             </div>
-            <div className='max-w-7xl mx-auto my-5 md:my-10'>
-                <Cover title={"Salad"} img={saladBg} />
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5 items-center justify-center mt-5 lg:mt-10">
-                    {
-                        salad.map(item => <MenuList key={item._id} item={item} />)
-                    }
-                </div>
-                <OrderButton />
-            </div>
-            <div className='max-w-7xl mx-auto my-5 md:my-10'>
-                <Cover title={"Pizza"} img={pizzaBg} />
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5 items-center justify-center mt-5 lg:mt-10">
-                    {
-                        pizza.map(item => <MenuList key={item._id} item={item} />)
-                    }
-                </div>
-                <OrderButton />
-            </div>
-            <div className='max-w-7xl mx-auto my-5 md:my-10'>
-                <Cover title={"Soup"} img={soupBg} />
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5 items-center justify-center mt-5 lg:mt-10">
-                    {
-                        soup.map(item => <MenuList key={item._id} item={item} />)
-                    }
-                </div>
-                <OrderButton />
-            </div>
+            {/* Desert */}
+            <MenuCategory items={salad} title={"salad"} image={saladBg} />
+            <MenuCategory items={dessert} title={"desert"} image={desertBg} />
+            <MenuCategory items={pizza} title={"pizza"} image={pizzaBg} />
+            <MenuCategory items={soup} title={"soup"} image={soupBg} />
         </div>
     );
 };
