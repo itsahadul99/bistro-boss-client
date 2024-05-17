@@ -2,7 +2,7 @@
 const MenuList = ({ item }) => {
     const { image, name, price, recipe } = item;
     return (
-        <div className="flex gap-3">
+        <div className="flex gap-3 md:gap-5 lg:gap-8 space-y-2">
             <img style={
                 {
                     borderRadius: '0px 200px 200px 200px'
