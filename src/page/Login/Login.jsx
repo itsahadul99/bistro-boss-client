@@ -1,19 +1,46 @@
 import { Link } from "react-router-dom";
 import bgImg from '../../assets/others/authentication.png';
 import login from '../../assets/others/authentication2.png';
+import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
+import { useEffect, useRef, useState } from "react";
+import useAuth from "../../hooks/Auth/useAuth";
 const Login = () => {
+    const {signIn} = useAuth()
+    const [disabled, setDisabled] = useState(true)
+    const captchaRef = useRef(null)
+    useEffect(() => {
+        loadCaptchaEnginge(6);
+    }, [])
     const handleLogIn = e => {
-
+        e.preventDefault()
+        const form = e.target;
+        const email = form.email.value;
+        const password = form.password.value;
+        signIn(email, password)
+        .then(() => {
+            alert('Log in successfully')
+        })
+    }
+    const handleCaptchaCode = () => {
+        const user_captcha_value = captchaRef.current.value;
+        console.log(user_captcha_value);
+        if (validateCaptcha(user_captcha_value)) {
+            setDisabled(false)
+        }
+        else{
+            setDisabled(false)
+        }
     }
     return (
         <div className='flex justify-center items-center min-h-screen' style={{
             backgroundImage: `url(${bgImg})`,
         }}>
             <div style={{
-            backgroundImage: `url(${bgImg})`}} className='flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-sm shadow-2xl  lg:max-w-5xl '>
+                backgroundImage: `url(${bgImg})`
+            }} className='flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-sm shadow-2xl  lg:max-w-5xl '>
                 <div
                     className='hidden bg-center lg:block'
-                
+
                 >
                     <img className="flex items-center justify-center p-10 h-full" src={login} alt="" />
                 </div>
@@ -46,7 +73,6 @@ const Login = () => {
                                 type='email'
                             />
                         </div>
-
                         <div className='mt-4'>
                             <div className='flex justify-between'>
                                 <label
@@ -69,42 +95,23 @@ const Login = () => {
                             <div className='flex justify-between'>
                                 <label
                                     className='block mb-2 text-sm font-medium text-gray-600 '
-                                    htmlFor='captcha'
                                 >
-                                    Captcha
+                                    <LoadCanvasTemplate />
                                 </label>
                             </div>
-
                             <input
-                                id='captcha'
-                                autoComplete='current-password'
-                                name='captcha'
+                                ref={captchaRef}
                                 className='block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg    focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300'
-                                type='password'
+                                type='text'
+                                placeholder="Write captcha"
                             />
-                        </div>
-                        <div className='mt-4'>
-                            <div className='flex justify-between'>
-                                <label
-                                    className='block mb-2 text-sm font-medium text-gray-600 '
-                                    htmlFor='reloadCaptcha'
-                                >
-                                    Reload Captcha
-                                </label>
-                            </div>
-
-                            <input
-                                id='reloadCaptcha'
-                                autoComplete='current-password'
-                                name='reloadCaptcha'
-                                className='block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg    focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300'
-                                type='password'
-                            />
+                            <button onClick={handleCaptchaCode} className="btn btn-outline btn-xs mt-4">Validate Captcha</button>
                         </div>
                         <div className='mt-6'>
                             <button
+                                disabled={disabled}
                                 type='submit'
-                                className='w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-[#D1A054] rounded-lg hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50'
+                                className={ disabled ? "w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize btn ":'w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-[#D1A054] rounded-lg hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50'}
                             >
                                 Sign In
                             </button>
