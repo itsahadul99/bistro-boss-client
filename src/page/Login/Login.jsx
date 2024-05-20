@@ -1,35 +1,46 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import bgImg from '../../assets/others/authentication.png';
 import login from '../../assets/others/authentication2.png';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import { useEffect, useRef, useState } from "react";
 import useAuth from "../../hooks/Auth/useAuth";
+import toast from "react-hot-toast";
+import { FcGoogle } from "react-icons/fc";
 const Login = () => {
-    const {signIn} = useAuth()
+    const { signIn, signInWithGoogle } = useAuth()
     const [disabled, setDisabled] = useState(true)
     const captchaRef = useRef(null)
+    const navigate = useNavigate()
     useEffect(() => {
         loadCaptchaEnginge(6);
     }, [])
+    const handleCaptchaCode = () => {
+        setDisabled(true)
+        const user_captcha_value = captchaRef.current.value;
+        if (validateCaptcha(user_captcha_value)) {
+            setDisabled(false)
+        }
+        else {
+            setDisabled(true)
+        }
+    }
     const handleLogIn = e => {
         e.preventDefault()
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
         signIn(email, password)
-        .then(() => {
-            alert('Log in successfully')
-        })
+            .then(() => {
+                toast.success('Log in successfully')
+                navigate('/')
+            })
     }
-    const handleCaptchaCode = () => {
-        const user_captcha_value = captchaRef.current.value;
-        console.log(user_captcha_value);
-        if (validateCaptcha(user_captcha_value)) {
-            setDisabled(false)
-        }
-        else{
-            setDisabled(false)
-        }
+    const handleGoggleSignIn = () => {
+        signInWithGoogle()
+        .then(() => {
+            navigate('/')
+            toast.success('Successfully login')
+        })
     }
     return (
         <div className='flex justify-center items-center min-h-screen' style={{
@@ -53,10 +64,21 @@ const Login = () => {
                             alt=''
                         />
                     </div>
-
                     <p className='mt-3 text-xl text-center text-gray-600 '>
                         Welcome back!
                     </p>
+                    <div className='flex items-center justify-center pt-4 space-x-1'>
+                        <div className='flex-1 h-px sm:w-16 dark:bg-gray-700'></div>
+                        <p className='px-3 text-sm dark:text-gray-400'>
+                            Signup with social accounts
+                        </p>
+                        <div className='flex-1 h-px sm:w-16 dark:bg-gray-700'></div>
+                    </div>
+                    <button onClick={handleGoggleSignIn} className='disabled:cursor-not-allowed mx-auto flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer'>
+                        <FcGoogle size={32} />
+
+                        <p>Continue with Google</p>
+                    </button>
                     <form onSubmit={handleLogIn}>
                         <div className='mt-4'>
                             <label
@@ -66,6 +88,7 @@ const Login = () => {
                                 Email Address
                             </label>
                             <input
+                                required
                                 id='LoggingEmailAddress'
                                 autoComplete='email'
                                 name='email'
@@ -84,6 +107,7 @@ const Login = () => {
                             </div>
 
                             <input
+                                required
                                 id='loggingPassword'
                                 autoComplete='current-password'
                                 name='password'
@@ -101,7 +125,7 @@ const Login = () => {
                             </div>
                             <input
                                 ref={captchaRef}
-                                className='block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg    focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300'
+                                className='block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg  focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300'
                                 type='text'
                                 placeholder="Write captcha"
                             />
@@ -111,7 +135,7 @@ const Login = () => {
                             <button
                                 disabled={disabled}
                                 type='submit'
-                                className={ disabled ? "w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize btn ":'w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-[#D1A054] rounded-lg hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50'}
+                                className={disabled ? "w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize btn " : 'w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-[#D1A054] rounded-lg hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50'}
                             >
                                 Sign In
                             </button>

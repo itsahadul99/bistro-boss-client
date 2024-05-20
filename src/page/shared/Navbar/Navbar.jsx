@@ -1,5 +1,8 @@
 import { NavLink } from "react-router-dom";
+import useAuth from "../../../hooks/Auth/useAuth";
+import toast from "react-hot-toast";
 const Navbar = () => {
+    const { user, logOut } = useAuth()
     const navLinks = <>
         <li><NavLink to="/"
             className={({ isActive }) =>
@@ -41,15 +44,13 @@ const Navbar = () => {
             }
         >Our Shop
         </NavLink></li>
-        <li><NavLink to="/login"
-            className={({ isActive }) =>
-                isActive
-                    ? "text-[#EEFF25] font-bold text-xs md:text-lg"
-                    : "font-bold text-white text-xs md:text-lg"
-            }
-        >Login
-        </NavLink></li>
     </>
+    const handleLogout = () => {
+        logOut()
+        .then(() => {
+            toast.success("Successfully logout!!")
+        })
+    }
     return (
         <div>
             <div className="navbar fixed z-20 bg-[#151515] bg-opacity-5 md:px-20">
@@ -71,6 +72,26 @@ const Navbar = () => {
                     <ul className="hidden lg:flex lg:gap-5 items-center">
                         {navLinks}
                     </ul>
+                    {
+                        user ?
+                            <div className="dropdown dropdown-end ml-3">
+                                <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                                    <div className="w-10 rounded-full">
+                                        <img title={user?.displayName} alt="User Img" src={user?.photoURL} />
+                                    </div>
+                                </div>
+                                <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+                                    <li><a onClick={handleLogout}>Logout</a></li>
+                                </ul>
+                            </div> : <li><NavLink to="/login"
+                                className={({ isActive }) =>
+                                    isActive
+                                        ? "text-[#EEFF25] font-bold text-xs md:text-lg"
+                                        : "font-bold text-white text-xs md:text-lg"
+                                }
+                            >Login
+                            </NavLink></li>
+                    }
                 </div>
             </div>
         </div>
