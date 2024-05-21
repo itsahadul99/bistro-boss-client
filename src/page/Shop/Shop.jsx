@@ -7,7 +7,7 @@ import FoodCard from './Food/FoodCard';
 import { useParams } from 'react-router-dom';
 const Shop = () => {
     const categories = ['salad', 'pizza', 'soup', 'dessert', 'drinks']
-    const {category} = useParams()
+    const { category } = useParams()
     const initializedIndex = categories.indexOf(category);
     const [tabIndex, setTabIndex] = useState(initializedIndex)
     const [menu] = useFetchData();
@@ -47,34 +47,39 @@ const Shop = () => {
                         </div>
                     </TabPanel>
                     <TabPanel>
-                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8 lg:gap-10 items-center'>
+                        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8 lg:gap-10 items-center'>
                             {
                                 pizza.map(item => <FoodCard key={item._id} item={item} />)
                             }
                         </div>
                     </TabPanel>
                     <TabPanel>
-                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8 lg:gap-10 items-center'>
+                        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8 lg:gap-10 items-center'>
                             {
                                 soup.map(item => <FoodCard key={item._id} item={item} />)
                             }
                         </div>
                     </TabPanel>
                     <TabPanel>
-                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8 lg:gap-10 items-center'>
+                        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8 lg:gap-10 items-center'>
                             {
                                 dessert.map(item => <FoodCard key={item._id} item={item} />)
                             }
                         </div>
                     </TabPanel>
                     <TabPanel>
-                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8 lg:gap-10 items-center'>
+                        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8 lg:gap-10 items-center'>
                             {
                                 drinks.map(item => <FoodCard key={item._id} item={item} />)
                             }
                         </div>
                     </TabPanel>
                 </Tabs>
+                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8 lg:gap-10 items-center'>
+                    {
+                        menu.slice(0, 20).map(item => <FoodCard key={item._id} item={item} />)
+                    }
+                </div>
             </div>
         </div>
     );

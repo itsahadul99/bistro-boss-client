@@ -47,18 +47,6 @@ const Navbar = () => {
             }
         >Our Shop
         </NavLink></li>
-        {user && <li><NavLink to="/my-cart"
-            className={({ isActive }) =>
-                isActive
-                    ? "text-[#EEFF25] font-bold text-xs md:text-lg"
-                    : "font-bold text-white text-xs md:text-lg"
-            }
-        >
-            <div className="indicator">
-                <span className="indicator-item badge ">{cart.length}</span>
-                <div className="grid size-12 rounded-full place-items-center"><FaShoppingCart /></div>
-            </div>
-        </NavLink></li>}
     </>
     const handleLogout = () => {
         logOut()
