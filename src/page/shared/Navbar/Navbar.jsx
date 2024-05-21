@@ -1,8 +1,11 @@
 import { NavLink } from "react-router-dom";
 import useAuth from "../../../hooks/Auth/useAuth";
 import toast from "react-hot-toast";
+import { FaShoppingCart } from "react-icons/fa";
+import useCart from "../../../hooks/Cart/useCart";
 const Navbar = () => {
     const { user, logOut } = useAuth()
+    const [cart] = useCart()
     const navLinks = <>
         <li><NavLink to="/"
             className={({ isActive }) =>
@@ -44,12 +47,24 @@ const Navbar = () => {
             }
         >Our Shop
         </NavLink></li>
+        {user && <li><NavLink to="/my-cart"
+            className={({ isActive }) =>
+                isActive
+                    ? "text-[#EEFF25] font-bold text-xs md:text-lg"
+                    : "font-bold text-white text-xs md:text-lg"
+            }
+        >
+            <div className="indicator">
+                <span className="indicator-item badge ">{cart.length}</span>
+                <div className="grid size-12 rounded-full place-items-center"><FaShoppingCart /></div>
+            </div>
+        </NavLink></li>}
     </>
     const handleLogout = () => {
         logOut()
-        .then(() => {
-            toast.success("Successfully logout!!")
-        })
+            .then(() => {
+                toast.success("Successfully logout!!")
+            })
     }
     return (
         <div>
