@@ -23,7 +23,8 @@ const Sidebar = () => {
                     <FaHome />  Admin Home
                 </NavLink>
                 </li>
-                <li><NavLink to="my-cart"
+                <li><NavLink to="/dashboard"
+                end
                     className={({ isActive }) =>
                         isActive
                             ? "text-white text-lg flex gap-2 items-center"

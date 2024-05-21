@@ -7,11 +7,13 @@ import Login from "../page/Login/Login";
 import Register from "../page/Register/Register";
 import Dashboard from "../layouts/Dashboard";
 import MyCart from "../page/Dashboard/MyCart/MyCart";
+import ErrorPage from "../page/ErrorPage/ErrorPage";
 
 
 const router = createBrowserRouter([
     {
         path: '/',
+        errorElement: <ErrorPage />,
         element: <MainLayout />,
         children: [
             {
@@ -46,7 +48,8 @@ const router = createBrowserRouter([
         element: <Dashboard />,
         children: [
             {
-                path: 'my-cart',
+                index: true,
+                errorElement: <ErrorPage />,
                 element: <MyCart />
             }
         ]

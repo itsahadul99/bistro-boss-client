@@ -37,9 +37,9 @@ const MyCart = () => {
         <dispatchEvent>
             <SectionTitle heading={"WANNA ADD MORE?"} subHeading={"My cart"} />
             <div className="overflow-x-auto overflow-y-auto p-8 shadow-sm mt-12 bg-white">
-                <div className="text-[#151515] font-semibold my-5 flex justify-evenly text-2xl">
+                <div className="text-[#151515] font-bold my-5 flex justify-evenly text-2xl font-cinzel uppercase items-center">
                     <h1>Total Order: {cart.length}</h1>
-                    <h1>total price: ${totalPrice}</h1>
+                    <h1>Total price: ${totalPrice}</h1>
                     <button className="btn bg-[#D1A054] font-cinzel font-medium text-lg text-white">Pay</button>
 
                 </div>
@@ -62,7 +62,7 @@ const MyCart = () => {
                                     {idx + 1}
                                 </th>
                                 <td>
-                                    <div className="size-20 items-center flex justify-center">
+                                    <div className="size-14 items-center flex justify-center">
                                         <img src={item?.image} alt="Item img" />
                                     </div>
                                 </td>
@@ -73,8 +73,8 @@ const MyCart = () => {
                                     ${item?.price}
                                 </td>
                                 <th>
-                                    <button onClick={() => handleDelete(item?._id)} className="btn btn-ghost text-white bg-[#B91C1C]">
-                                        <RiDeleteBin6Line size={20} />
+                                    <button onClick={() => handleDelete(item?._id)} className="btn btn-sm btn-ghost text-white bg-[#B91C1C]">
+                                        <RiDeleteBin6Line size={12} />
                                     </button>
                                 </th>
                             </tr>)
