@@ -7,13 +7,38 @@ import Swal from "sweetalert2";
 
 const AllUser = () => {
     const axiosSecure = useAxiosSecure()
-    const {data: users = [], refetch} = useQuery({
+    const { data: users = [], refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const {data} = await axiosSecure.get('/users')
+            const { data } = await axiosSecure.get('/users')
             return data
         }
     })
+    const handleRuleUser = id => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.patch(`/users/admin/${id}`)
+                    .then(res => {
+                        if (res.data.matchedCount > 0) {
+                            refetch()
+                            Swal.fire({
+                                title: "Success!",
+                                text: "This user is now an Admin",
+                                icon: "success"
+                            });
+                        }
+                    })
+            }
+        });
+    }
     const handleDelete = (id) => {
         Swal.fire({
             title: "Are you sure?",
@@ -43,11 +68,8 @@ const AllUser = () => {
         <div>
             <SectionTitle heading={"WANNA ADD MORE?"} subHeading={"My cart"} />
             <div className="overflow-x-auto overflow-y-auto p-8 shadow-sm mt-12 bg-white">
-                <div className="text-[#151515] font-bold my-5 flex justify-evenly text-2xl font-cinzel uppercase items-center">
-                    <h1>Total Order: {users.length}</h1>
-                    <h1>Total price: $</h1>
-                    <button className="btn bg-[#D1A054] font-cinzel font-medium text-lg text-white">Pay</button>
-
+                <div className="text-[#151515] font-bold my-5 text-2xl uppercase ">
+                    <h1>Total User: {users.length}</h1>
                 </div>
                 <table className="table">
                     {/* head */}
@@ -71,17 +93,21 @@ const AllUser = () => {
                                     {user?.name}
                                 </td>
                                 <td>
-                                    ${user?.email}
+                                    {user?.email}
                                 </td>
                                 <td>
-                                    <button className="btn btn-sm btn-ghost text-white bg-[#D1A054]">
-                                        <FaUsers size={12}/>
-                                    </button>
+                                    {
+                                        user.rule === 'admin' ? 'Admin' : <button
+                                            onClick={() => handleRuleUser(user._id)}
+                                            className="btn btn-sm btn-ghost text-white bg-[#D1A054]">
+                                            <FaUsers size={12} />
+                                        </button>
+                                    }
                                 </td>
                                 <th>
-                                    <button 
-                                    onClick={() => handleDelete(user?._id)}
-                                     className="btn btn-sm btn-ghost text-white bg-[#B91C1C]">
+                                    <button
+                                        onClick={() => handleDelete(user?._id)}
+                                        className="btn btn-sm btn-ghost text-white bg-[#B91C1C]">
                                         <RiDeleteBin6Line size={12} />
                                     </button>
                                 </th>
