@@ -3,6 +3,7 @@ import SectionTitle from "../../../components/SectionTitle";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/AxiosSecure/useAxiosSecure";
 import { FaUsers } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const AllUser = () => {
     const axiosSecure = useAxiosSecure()
@@ -14,7 +15,29 @@ const AllUser = () => {
         }
     })
     const handleDelete = (id) => {
-
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.delete(`/users/${id}`)
+                    .then(res => {
+                        if (res.data.deletedCount > 0) {
+                            refetch()
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Successfully delete this user",
+                                icon: "success"
+                            });
+                        }
+                    })
+            }
+        });
     }
     return (
         <div>
