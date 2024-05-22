@@ -5,8 +5,9 @@ import bgImg from '../../assets/others/authentication.png';
 import useAuth from "../../hooks/Auth/useAuth";
 import { useForm } from "react-hook-form"
 import toast from "react-hot-toast";
+import Google from "../../components/Social/Google";
 const Register = () => {
-    const {createUser, updateUserProfile} = useAuth()
+    const { createUser, updateUserProfile } = useAuth()
     const navigate = useNavigate()
     const {
         register,
@@ -17,15 +18,14 @@ const Register = () => {
 
     const onSubmit = (data) => {
         console.log(data.email, data.password);
-
         createUser(data.email, data.password)
-        .then(() => {
-        })
+            .then(() => {
+            })
         updateUserProfile(data.name, data.photo)
-        .then(() => {
-            navigate('/')
-            toast.success("Successfully sign up")
-        })
+            .then(() => {
+                navigate('/')
+                toast.success("Successfully sign up")
+            })
     }
     return (
         <div className='flex justify-center items-center min-h-screen'
@@ -45,13 +45,12 @@ const Register = () => {
                         />
                     </div>
 
+                    <Google />
                     <div className='flex items-center justify-between mt-4'>
-                        <span className='w-1/5 border-b  lg:w-1/4'></span>
-
+                        <span className='w-1/5 border-b dark:border-gray-400  lg:w-1/4'></span>
                         <div className='text-xs text-center text-gray-500 uppercase  hover:underline'>
                             or Registration with email
                         </div>
-
                         <span className='w-1/5 border-b dark:border-gray-400 lg:w-1/4'></span>
                     </div>
                     <form onSubmit={handleSubmit(onSubmit)}>

@@ -8,6 +8,8 @@ import Register from "../page/Register/Register";
 import Dashboard from "../layouts/Dashboard";
 import MyCart from "../page/Dashboard/MyCart/MyCart";
 import ErrorPage from "../page/ErrorPage/ErrorPage";
+import PrivateRoute from "./PrivateRoute";
+import AllUser from "../page/Dashboard/AllUser/AllUser";
 
 
 const router = createBrowserRouter([
@@ -19,7 +21,7 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home />
-            }, 
+            },
             {
                 path: '/our-menu',
                 element: <OurMenu />
@@ -45,11 +47,17 @@ const router = createBrowserRouter([
     },
     {
         path: '/dashboard',
-        element: <Dashboard />,
+        errorElement: <ErrorPage />,
+        element: <PrivateRoute><Dashboard /></PrivateRoute>,
         children: [
+            // Admin link
             {
-                index: true,
-                errorElement: <ErrorPage />,
+                path: 'allUsers',
+                element: <AllUser />
+            },
+            // Normal User link
+            {
+                path: 'my-cart',
                 element: <MyCart />
             }
         ]

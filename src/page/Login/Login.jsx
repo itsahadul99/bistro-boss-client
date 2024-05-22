@@ -5,9 +5,9 @@ import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-s
 import { useEffect, useRef, useState } from "react";
 import useAuth from "../../hooks/Auth/useAuth";
 import toast from "react-hot-toast";
-import { FcGoogle } from "react-icons/fc";
+import Google from "../../components/Social/Google";
 const Login = () => {
-    const { signIn, signInWithGoogle } = useAuth()
+    const { signIn } = useAuth()
     const [disabled, setDisabled] = useState(true)
     const captchaRef = useRef(null)
     const navigate = useNavigate()
@@ -34,13 +34,6 @@ const Login = () => {
                 toast.success('Log in successfully')
                 navigate('/')
             })
-    }
-    const handleGoggleSignIn = () => {
-        signInWithGoogle()
-        .then(() => {
-            navigate('/')
-            toast.success('Successfully login')
-        })
     }
     return (
         <div className='flex justify-center items-center min-h-screen' style={{
@@ -74,11 +67,11 @@ const Login = () => {
                         </p>
                         <div className='flex-1 h-px sm:w-16 dark:bg-gray-700'></div>
                     </div>
-                    <button onClick={handleGoggleSignIn} className='disabled:cursor-not-allowed mx-auto flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer'>
+                    {/* <button onClick={handleGoggleSignIn} className='disabled:cursor-not-allowed mx-auto flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer'>
                         <FcGoogle size={32} />
-
                         <p>Continue with Google</p>
-                    </button>
+                    </button> */}
+                    <Google />
                     <form onSubmit={handleLogIn}>
                         <div className='mt-4'>
                             <label
