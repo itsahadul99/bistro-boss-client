@@ -10,11 +10,13 @@ import {
   updateProfile,
 } from 'firebase/auth'
 import auth from '../firebase/firebase.config'
+import useAxiosCommon from '../hooks/AxiosCommon/useAxiosCommon'
 
 export const AuthContext = createContext(null)
 const googleProvider = new GoogleAuthProvider()
 
 const AuthProvider = ({ children }) => {
+  const axiosCommon = useAxiosCommon()
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
 
@@ -51,6 +53,19 @@ const AuthProvider = ({ children }) => {
       setUser(currentUser)
       // console.log('CurrentUser-->', currentUser)
       setLoading(false)
+      if (currentUser) {
+        // get the token 
+        const userInfo = currentUser.email;
+        axiosCommon.post('/jwt', userInfo)
+          .then(res => {
+            if (res.data.token) {
+              localStorage.setItem('access-token', res.data.token)
+            }
+          })
+      }
+      else {
+        localStorage.removeItem('access-token')
+      }
     })
     return () => {
       return unsubscribe()
