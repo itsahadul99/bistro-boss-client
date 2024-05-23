@@ -6,9 +6,11 @@ import { MdOutlineRestaurant, MdOutlineReviews } from "react-icons/md";
 import { SlCalender } from "react-icons/sl";
 import { TfiMenuAlt } from "react-icons/tfi";
 import { NavLink } from "react-router-dom";
+import useAdmin from "../../../hooks/IsAdmin/useAdmin";
 
 const Sidebar = () => {
-    const isAdmin = true;
+    const [isAdmin] = useAdmin();
+    console.log(isAdmin);
     return (
         <div className="w-64 min-h-screen p-5 bg-[#D1A054]">
             <div className="text-[#151515] py-8">
@@ -20,7 +22,7 @@ const Sidebar = () => {
                 {
                     isAdmin ? <>
                         <li><NavLink to="/dashboard"
-                        end
+                            end
                             className={({ isActive }) =>
                                 isActive
                                     ? "text-white text-lg flex gap-2 items-center"
@@ -74,7 +76,7 @@ const Sidebar = () => {
                         :
                         <>
                             <li><NavLink to="/dashboard"
-                            end
+                                end
                                 className={({ isActive }) =>
                                     isActive
                                         ? "text-white text-lg flex gap-2 items-center"

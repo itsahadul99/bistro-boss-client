@@ -17,10 +17,12 @@ const useAxiosSecure = () => {
         })
     axiosSecure.interceptors.response.use(function (response) {
         return response;
-    }, function (error) {
-        logOut()
-            .then()
-        navigate('/login')
+    }, async (error) => {
+        const status = error.response.status;
+        if (status === 401 || status === 403) {
+            await logOut()
+            navigate('/login')
+        }
         return Promise.reject(error)
     })
     return axiosSecure;

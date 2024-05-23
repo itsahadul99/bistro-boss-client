@@ -6,8 +6,11 @@ import useAuth from "../../hooks/Auth/useAuth";
 import { useForm } from "react-hook-form"
 import toast from "react-hot-toast";
 import Google from "../../components/Social/Google";
+import useAxiosCommon from "../../hooks/AxiosCommon/useAxiosCommon";
+import auth from "../../firebase/firebase.config";
 const Register = () => {
     const { createUser, updateUserProfile } = useAuth()
+    const axiosCommon = useAxiosCommon()
     const navigate = useNavigate()
     const {
         register,
@@ -23,8 +26,13 @@ const Register = () => {
             })
         updateUserProfile(data.name, data.photo)
             .then(() => {
-                navigate('/')
-                toast.success("Successfully sign up")
+                const userInfo = { name: auth.currentUser?.displayName, email: auth.currentUser?.email }
+                axiosCommon.post('/users', userInfo)
+                    .then(() => {
+                        navigate('/')
+                        toast.success("Successfully sign up")
+                    }
+                )
             })
     }
     return (

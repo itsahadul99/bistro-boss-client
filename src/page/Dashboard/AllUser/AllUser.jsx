@@ -20,9 +20,9 @@ const AllUser = () => {
             text: "You won't be able to revert this!",
             icon: "warning",
             showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
+            confirmButtonColor: "#D1A054",
+            cancelButtonColor: "#B91C1C",
+            confirmButtonText: "Yes, make admin!"
         }).then((result) => {
             if (result.isConfirmed) {
                 axiosSecure.patch(`/users/admin/${id}`)
@@ -45,8 +45,8 @@ const AllUser = () => {
             text: "You won't be able to revert this!",
             icon: "warning",
             showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
+            confirmButtonColor: "#D1A054",
+            cancelButtonColor: "#B91C1C",
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
@@ -97,7 +97,7 @@ const AllUser = () => {
                                 </td>
                                 <td>
                                     {
-                                        user.rule === 'admin' ? 'Admin' : <button
+                                        user.role === 'admin' ? 'Admin' : <button
                                             onClick={() => handleRuleUser(user._id)}
                                             className="btn btn-sm btn-ghost text-white bg-[#D1A054]">
                                             <FaUsers size={12} />

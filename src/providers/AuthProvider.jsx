@@ -55,8 +55,8 @@ const AuthProvider = ({ children }) => {
       setLoading(false)
       if (currentUser) {
         // get the token 
-        const userInfo = currentUser.email;
-        axiosCommon.post('/jwt', userInfo)
+        const email = { email: currentUser?.email }
+        axiosCommon.post('/jwt', email)
           .then(res => {
             if (res.data.token) {
               localStorage.setItem('access-token', res.data.token)
