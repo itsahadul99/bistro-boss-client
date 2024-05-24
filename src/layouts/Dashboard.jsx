@@ -5,7 +5,7 @@ const Dashboard = () => {
     return (
         <div className="flex bg-[#F6F6F6]">
             {/* Side bar */}
-            <div >
+            <div className="min-h-screen" >
                 <Sidebar />
             </div>
             {/* Outlet */}

@@ -12,7 +12,7 @@ const Sidebar = () => {
     const [isAdmin] = useAdmin();
     console.log(isAdmin);
     return (
-        <div className="w-64 min-h-screen p-5 bg-[#D1A054]">
+        <div className="w-64 min-h-screen fixed p-5 bg-[#D1A054]">
             <div className="text-[#151515] py-8">
                 <h1 className="text-2xl md:text-3xl font-cinzel font-bold uppercase">Bistro Boss</h1>
                 <h3 className="text-lg font-bold tracking-[7px] mt-1 font-cinzel uppercase">Restaurant</h3>
@@ -32,7 +32,7 @@ const Sidebar = () => {
                             <FaHome />  Admin Home
                         </NavLink>
                         </li>
-                        <li><NavLink to="/add-item"
+                        <li><NavLink to="addItems"
                             className={({ isActive }) =>
                                 isActive
                                     ? "text-white text-lg flex gap-2 items-center"
