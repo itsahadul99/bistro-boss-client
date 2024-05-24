@@ -4,6 +4,7 @@ import useFetchData from "../../../hooks/FetchData/useFetchData";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/AxiosSecure/useAxiosSecure";
 import { FaEdit } from "react-icons/fa";
+import { Link } from "react-router-dom";
 // import useAuth from "../../../hooks/Auth/useAuth";
 
 const ManagePost = () => {
@@ -35,9 +36,6 @@ const ManagePost = () => {
                     })
             }
         });
-    }
-    const handleUpdate = id => {
-        console.log('update soon', id);
     }
     return (
         <div>
@@ -77,9 +75,9 @@ const ManagePost = () => {
                                     ${item?.price}
                                 </td>
                                 <th>
-                                    <button onClick={() => handleUpdate(item?._id)} className="btn btn-sm btn-ghost text-white bg-[#D1A054] text-center">
+                                    <Link to={`/dashboard/update/${item?._id}`} className="btn btn-sm btn-ghost text-white bg-[#D1A054] text-center">
                                         <FaEdit size={12} />
-                                    </button>
+                                    </Link>
                                 </th>
                                 <th>
                                     <button onClick={() => handleDelete(item?._id)} className="btn btn-sm btn-ghost text-white bg-[#B91C1C]">

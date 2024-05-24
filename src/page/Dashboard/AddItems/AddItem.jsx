@@ -8,6 +8,7 @@ const AddItem = () => {
     const {
         register,
         handleSubmit,
+        reset,
         // eslint-disable-next-line no-unused-vars
         formState: { errors },
     } = useForm();
@@ -35,6 +36,7 @@ const AddItem = () => {
                         .then(res => {
                             console.log(res.data);
                             if (res.data.insertedId) {
+                                reset()
                                 toast.success("Item added successfully")
                             }
                         })

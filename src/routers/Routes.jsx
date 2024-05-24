@@ -13,6 +13,7 @@ import AllUser from "../page/Dashboard/AllUser/AllUser";
 import AdminRoute from "./AdminRoute";
 import AddItem from "../page/Dashboard/AddItems/AddItem";
 import ManagePost from "../page/Dashboard/ManagePost/ManagePost";
+import UpdateItem from "../page/Dashboard/UpdateItem/UpdateItem";
 
 
 const router = createBrowserRouter([
@@ -65,6 +66,11 @@ const router = createBrowserRouter([
             {
                 path: 'manageItems',
                 element: <AdminRoute><ManagePost /></AdminRoute>
+            },
+            {
+                path: 'update/:id',
+                element: <AdminRoute><UpdateItem /></AdminRoute>,
+                loader: ({params}) => fetch(`${import.meta.env.VITE_API_URL}/menu/update/${params.id}`)
             },
             // Normal User link
             {
