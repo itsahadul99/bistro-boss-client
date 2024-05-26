@@ -9,8 +9,8 @@ import { NavLink } from "react-router-dom";
 import useAdmin from "../../../hooks/IsAdmin/useAdmin";
 
 const Sidebar = () => {
-    const [isAdmin] = useAdmin();
-    console.log(isAdmin);
+    const [isAdmin, isAdminLoading] = useAdmin();
+    if(isAdminLoading) return <div>loading</div>
     return (
         <div className="w-64 min-h-screen fixed p-5 bg-[#D1A054]">
             <div className="text-[#151515] py-8">
