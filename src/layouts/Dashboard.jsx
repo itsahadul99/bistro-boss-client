@@ -3,13 +3,13 @@ import Sidebar from "../page/Dashboard/Sidebar/Sidebar";
 
 const Dashboard = () => {
     return (
-        <div className="flex bg-[#F6F6F6]">
+        <div className=" lg:flex bg-[#F6F6F6]">
             {/* Side bar */}
-            <div className="min-h-screen" >
+            <div className="lg:min-h-screen" >
                 <Sidebar />
             </div>
             {/* Outlet */}
-            <div className="flex-1 px-20 my-10 max-w-6xl mx-auto">
+            <div className="flex-1 lg:px-20 my-5 lg:my-10 max-w-6xl mx-auto">
                 <Outlet />
             </div>
         </div>
