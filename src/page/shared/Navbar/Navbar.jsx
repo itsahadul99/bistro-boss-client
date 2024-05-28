@@ -1,11 +1,8 @@
 import { NavLink } from "react-router-dom";
 import useAuth from "../../../hooks/Auth/useAuth";
 import toast from "react-hot-toast";
-import { FaShoppingCart } from "react-icons/fa";
-import useCart from "../../../hooks/Cart/useCart";
 const Navbar = () => {
     const { user, logOut } = useAuth()
-    const [cart] = useCart()
     const navLinks = <>
         <li><NavLink to="/"
             className={({ isActive }) =>

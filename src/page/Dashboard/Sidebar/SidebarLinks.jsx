@@ -11,7 +11,6 @@ import { NavLink } from "react-router-dom";
 import Loading from "../../../components/Loading";
 
 const SidebarLinks = ({isToggle}) => {
-    console.log(isToggle);
     const [isAdmin, isAdminLoading] = useAdmin()
     if (isAdminLoading) return <div><Loading /></div>
     return (
