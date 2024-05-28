@@ -3,6 +3,7 @@ import SectionTitle from "../../../components/SectionTitle";
 import useAxiosSecure from "../../../hooks/AxiosSecure/useAxiosSecure";
 import useCart from "../../../hooks/Cart/useCart";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { Link } from "react-router-dom";
 
 const MyCart = () => {
     const axiosSecure = useAxiosSecure()
@@ -40,7 +41,9 @@ const MyCart = () => {
                 <div className="text-[#151515] font-bold my-5 flex justify-evenly text-2xl font-cinzel uppercase items-center">
                     <h1>Total Order: {cart.length}</h1>
                     <h1>Total price: ${totalPrice}</h1>
-                    <button className="btn bg-[#D1A054] font-cinzel font-medium text-lg text-white">Pay</button>
+                    {cart.length ? <Link to={`/dashboard/payment`}>
+                        <button className="btn bg-[#D1A054] font-cinzel font-medium text-lg text-white">Pay</button>
+                    </Link>: <button disabled className="btn bg-[#D1A054] font-cinzel font-medium text-lg text-white">Pay</button>}
 
                 </div>
                 <table className="table">
