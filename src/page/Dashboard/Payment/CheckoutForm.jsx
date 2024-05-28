@@ -4,8 +4,10 @@ import { useEffect, useState } from 'react';
 import useAxiosSecure from '../../../hooks/AxiosSecure/useAxiosSecure';
 import useCart from '../../../hooks/Cart/useCart';
 import useAuth from '../../../hooks/Auth/useAuth';
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 const CheckoutForm = () => {
-    const [cart] = useCart()
+    const [cart, refetch] = useCart()
     const stripe = useStripe();
     const elements = useElements();
     const totalPrice = cart.reduce((total, items) => total + items.price, 0)
@@ -13,7 +15,7 @@ const CheckoutForm = () => {
     const [clientSecret, setClientSecret] = useState("")
     const [error, setError] = useState('')
     const { user } = useAuth()
-
+    const navigate = useNavigate()
     useEffect(() => {
         if (totalPrice > 0) {
             axiosSecure.post('/create-payment-intent', { price: totalPrice })
@@ -63,7 +65,31 @@ const CheckoutForm = () => {
         }
         else {
             console.log(paymentIntent);
-            
+            if(paymentIntent.status === 'succeeded'){
+                // save the payment data on db
+                const payment = {
+                    email: user?.email,
+                    name: user?.displayName,
+                    price: totalPrice,
+                    transactionId: paymentIntent.id,
+                    date: new Date(),
+                    cartIds: cart.map(item => item._id),
+                    status: 'pending'
+                }
+                const {data} = await axiosSecure.post('/payments', payment)
+                refetch()
+                if (data?.paymentResult?.insertedId) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Thank you purchasing our food",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    navigate('/dashboard/paymentHistory')
+                }
+                
+            }
         }
 
     };
@@ -92,6 +118,7 @@ const CheckoutForm = () => {
                 disabled={!stripe || !clientSecret}>
                 Pay
             </button>
+            {error && <p className='text-red-400'>{error?.message}</p>}
         </form>
     );
 };
