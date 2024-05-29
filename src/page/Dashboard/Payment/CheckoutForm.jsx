@@ -10,7 +10,7 @@ const CheckoutForm = () => {
     const [cart, refetch] = useCart()
     const stripe = useStripe();
     const elements = useElements();
-    const totalPrice = cart.reduce((total, items) => total + items.price, 0)
+    const totalPrice = cart.reduce((total, items) => total + parseFloat(items?.price), 0)
     const axiosSecure = useAxiosSecure()
     const [clientSecret, setClientSecret] = useState("")
     const [error, setError] = useState('')
@@ -74,6 +74,7 @@ const CheckoutForm = () => {
                     transactionId: paymentIntent.id,
                     date: new Date(),
                     cartIds: cart.map(item => item._id),
+                    menuIds: cart.map(item => item?.menuId),
                     status: 'pending'
                 }
                 const {data} = await axiosSecure.post('/payments', payment)
