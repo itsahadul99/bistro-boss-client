@@ -16,6 +16,8 @@ import ManagePost from "../page/Dashboard/ManagePost/ManagePost";
 import UpdateItem from "../page/Dashboard/UpdateItem/UpdateItem";
 import Payment from "../page/Dashboard/Payment/Payment";
 import PaymentHistory from "../page/Dashboard/PaymentHistory/PaymentHistory";
+import AdminHome from "../page/Dashboard/AdminHome/AdminHome";
+import UserHome from "../page/Dashboard/UserHome/UserHome";
 
 
 const router = createBrowserRouter([
@@ -58,6 +60,10 @@ const router = createBrowserRouter([
         children: [
             // Admin link
             {
+                path: 'adminHome',
+                element: <AdminRoute><AdminHome /></AdminRoute>
+            },
+            {
                 path: 'allUsers',
                 element: <AdminRoute><AllUser /></AdminRoute>
             },
@@ -75,6 +81,10 @@ const router = createBrowserRouter([
                 loader: ({params}) => fetch(`${import.meta.env.VITE_API_URL}/menu/update/${params.id}`)
             },
             // Normal User link
+            {
+                path: 'userHome',
+                element: <UserHome />
+            },
             {
                 path: 'my-cart',
                 element: <MyCart />
