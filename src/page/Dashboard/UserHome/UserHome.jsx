@@ -1,9 +1,24 @@
 import { FaCalendar, FaPhone, FaShop, FaStar } from "react-icons/fa6";
 import useAuth from "../../../hooks/Auth/useAuth";
 import { FaShoppingCart } from "react-icons/fa";
+import useAxiosSecure from "../../../hooks/AxiosSecure/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
+import useCart from "../../../hooks/Cart/useCart";
+import useReview from "../../../hooks/useReview";
 
 const UserHome = () => {
     const { user } = useAuth()
+    const axiosSecure = useAxiosSecure()
+    const {data: history = []} = useQuery({
+        queryKey: ['history', user?.email],
+        queryFn: async() => {
+            const {data} = await axiosSecure.get(`/paymentHistory/${user?.email}`)
+            return data
+        }
+    })
+    const [cart] = useCart()
+    const [reviews] = useReview()
+    console.log(cart);
     return (
         <div>
             <h1 className="text-xl md:text-3xl font-cinzel font-semibold">Hi, Welcome Back,  <span>{user && user?.displayName}</span>
@@ -43,11 +58,11 @@ const UserHome = () => {
                         <h1 className="text-xl md:text-3xl font-cinzel font-semibold">Your Activities</h1>
                         <div className="text-[#0088FE] flex gap-2 items-center">
                             <FaShoppingCart size={20} />
-                            <h3 className="text-lg md:text-xl font-inter">Orders: </h3>
+                            <h3 className="text-lg md:text-xl font-inter">Orders: {cart.length} </h3>
                         </div>
                         <div className="text-[#00C4A1] flex gap-2 items-center">
                             <FaStar size={20} />
-                            <h3 className="text-lg md:text-xl font-inter">Reviews: </h3>
+                            <h3 className="text-lg md:text-xl font-inter">Reviews: {reviews.length}</h3>
                         </div>
                         <div className="text-[#FFBB28] flex gap-2 items-center">
                             <FaCalendar size={20} />
@@ -55,7 +70,7 @@ const UserHome = () => {
                         </div>
                         <div className="text-[#FF8042] flex gap-2 items-center">
                             <FaShoppingCart size={20} />
-                            <h3 className="text-lg md:text-xl font-inter">Payment: </h3>
+                            <h3 className="text-lg md:text-xl font-inter">Payment: {history.length} </h3>
                         </div>
                     </div>
                 </div>

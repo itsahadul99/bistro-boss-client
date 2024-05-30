@@ -19,6 +19,7 @@ import PaymentHistory from "../page/Dashboard/PaymentHistory/PaymentHistory";
 import AdminHome from "../page/Dashboard/AdminHome/AdminHome";
 import UserHome from "../page/Dashboard/UserHome/UserHome";
 import Review from "../page/Dashboard/Review/Review";
+import Booking from "../page/Dashboard/Booking/Booking";
 
 
 const router = createBrowserRouter([
@@ -101,6 +102,10 @@ const router = createBrowserRouter([
             {
                 path: 'review',
                 element: <Review />
+            },
+            {
+                path: 'booking',
+                element: <Booking />
             }
         ]
     }

@@ -24,7 +24,8 @@ const Review = () => {
             suggestion,
             rating: rating,
             details: review,
-            name: user?.displayName
+            name: user?.displayName,
+            email: user?.email
         }
         console.table(reviewData)
         try {
