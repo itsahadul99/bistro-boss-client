@@ -5,6 +5,7 @@ import { RouterProvider } from 'react-router-dom'
 import router from './routers/Routes.jsx'
 import AuthProvider from './providers/AuthProvider.jsx'
 import { Toaster } from 'react-hot-toast'
+import '@smastrom/react-rating/style.css'
 import {
   QueryClient,
   QueryClientProvider,
