@@ -38,7 +38,6 @@ const Review = () => {
             toast.error(error?.message)
         }
     }
-    console.log(rating);
     return (
         <div>
             <SectionTitle heading={"Add Review"} subHeading={"Sharing is Caring!!!"} />

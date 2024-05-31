@@ -64,7 +64,7 @@ const AdminHome = () => {
                 <div className=" p-5 md:p-8 md:h-[150px] md:w-[290px] bg-gradient-to-r from-[#BB34F5] to-[#FCDBFF] flex gap-5 justify-center items-center rounded-lg">
                     <FaShop className="md:size-12 size-6" />
                     <div className="text-center">
-                        <h1 className="text-xl md:text-3xl lg:text-4xl font-bold font-inter">{data?.revenue}</h1>
+                        <h1 className="text-xl md:text-3xl lg:text-4xl font-bold font-inter">{(data?.revenue.toFixed(2))}</h1>
                         <p className="text-sm md:text-lg lg:text-xl">Revenue</p>
                     </div>
                 </div>

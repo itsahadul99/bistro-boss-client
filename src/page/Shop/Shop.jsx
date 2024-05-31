@@ -38,7 +38,12 @@ const Shop = () => {
                             <Tab>DRINKS</Tab>
                         </TabList>
                     </div>
-
+                    {
+                        !tabIndex ? '' : <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8 lg:gap-10 items-center'>
+                        {
+                            menu.slice(0, 15).map(item => <FoodCard key={item._id} item={item} />)
+                        }
+                    </div> }
                     <TabPanel>
                         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8 lg:gap-10 items-center'>
                             {

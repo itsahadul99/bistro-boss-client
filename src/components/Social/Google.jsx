@@ -13,8 +13,7 @@ const Google = () => {
             .then((res) => {
                 const userInfo = { name: res.user?.displayName, email: res.user?.email }
                 axiosCommon.post('/users', userInfo)
-                    .then(res => {
-                        console.log(res.data);
+                    .then(() => {
                         navigate('/')
                         toast.success('Successfully login')
                     })

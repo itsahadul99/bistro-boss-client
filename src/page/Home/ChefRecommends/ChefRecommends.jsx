@@ -15,7 +15,7 @@ const ChefRecommends = () => {
                         <h2 className="text-[#151515] text-lg md:text-2xl font-semibold">Caeser Salad</h2>
                         <p className="text-xs md:text-sm font-medium text-[#151515]">Lettuce, Eggs, Parmesan Cheese, Chicken Breast Fillets.</p>
                         <div className="mt-3">
-                            <button className="rounded-md px-3 py-2 font-semibold bg-gray-100 border-b-2 border-b-[#BB8506] text-[#BB8506]">Add to Cart</button>
+                            <button className="rounded-md px-3 py-2 hover:bg-[#1F2937] font-semibold bg-gray-100 border-b-2 border-b-[#BB8506] text-[#BB8506]">Add to Cart</button>
                         </div>
                     </div>
                 </div>
@@ -27,7 +27,7 @@ const ChefRecommends = () => {
                         <h2 className="text-[#151515] text-lg md:text-2xl font-semibold">Caeser Salad</h2>
                         <p className="text-xs md:text-sm font-medium text-[#151515]">Lettuce, Eggs, Parmesan Cheese, Chicken Breast Fillets.</p>
                         <div className="mt-3">
-                            <button className="rounded-md px-3 py-2 bg-[#1F2937] font-semibold text-[#BB8506]">Add to Cart</button>
+                            <button className="rounded-md px-3 py-2 hover:bg-[#1F2937] bg-gray-100 font-semibold text-[#BB8506]">Add to Cart</button>
                         </div>
                     </div>
                 </div>
@@ -39,7 +39,7 @@ const ChefRecommends = () => {
                         <h2 className="text-[#151515] text-lg md:text-2xl font-semibold">Caeser Salad</h2>
                         <p className="text-xs md:text-sm font-medium text-[#151515]">Lettuce, Eggs, Parmesan Cheese, Chicken Breast Fillets.</p>
                         <div className="mt-3">
-                            <button className="rounded-md px-3 py-2 bg-gray-100 font-semibold border-b-2 border-b-[#BB8506] text-[#BB8506]">Add to Cart</button>
+                            <button className="rounded-md px-3 py-2 hover:bg-[#1F2937] bg-gray-100 font-semibold border-b-2 border-b-[#BB8506] text-[#BB8506]">Add to Cart</button>
                         </div>
                     </div>
                 </div>

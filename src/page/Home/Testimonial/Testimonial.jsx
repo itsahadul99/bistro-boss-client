@@ -11,7 +11,7 @@ import { FaQuoteLeft } from "react-icons/fa";
 const Testimonial = () => {
     const [review, setReview] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/review')
+        fetch(`${import.meta.env.VITE_API_URL}/review`)
             .then(res => res.json())
             .then(data => setReview(data))
     }, [])

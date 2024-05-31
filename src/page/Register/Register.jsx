@@ -20,7 +20,6 @@ const Register = () => {
     } = useForm()
 
     const onSubmit = (data) => {
-        console.log(data.email, data.password);
         createUser(data.email, data.password)
             .then(() => {
             })

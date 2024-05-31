@@ -23,7 +23,6 @@ const AddItem = () => {
                 }
             })
                 .then(res => {
-                    console.log(res.data.data.display_url)
                     const imageUrl = res.data.data.display_url;
                     const menuData = {
                         recipe: data.details,
@@ -34,7 +33,6 @@ const AddItem = () => {
                     }
                     axiosSecure.post('/menu', menuData)
                         .then(res => {
-                            console.log(res.data);
                             if (res.data.insertedId) {
                                 reset()
                                 toast.success("Item added successfully")
@@ -43,7 +41,7 @@ const AddItem = () => {
                 })
 
         } catch (error) {
-            console.log(error);
+            toast.error(error?.message)
         }
     }
     return (
